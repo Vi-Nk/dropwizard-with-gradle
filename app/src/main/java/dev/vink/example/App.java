@@ -4,6 +4,7 @@
 package dev.vink.example;
 
 import dev.vink.example.config.AppConfig;
+import dev.vink.example.resources.HealthCheckService;
 import dev.vink.example.resources.PersonService;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Environment;
@@ -18,6 +19,7 @@ public class App extends Application<AppConfig> {
     public void run(AppConfig configuration, Environment environment) throws Exception {
         final PersonService personService = new PersonService();
         environment.jersey().register(personService);
+        environment.healthChecks().register(getName(), new HealthCheckService());
 
     }
 

@@ -1,5 +1,7 @@
 package dev.vink.example.resources;
 
+import java.util.List;
+
 import dev.vink.example.data.Person;
 import dev.vink.example.data.PersonDatabase;
 import jakarta.ws.rs.Consumes;
@@ -25,6 +27,12 @@ public class PersonService {
         return PersonDatabase.getById(id);
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Person> listPersons() {
+        return PersonDatabase.getAll();
+    }
+
     @Path("/add")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -35,4 +43,5 @@ public class PersonService {
         }
         return Response.notModified().build();
     }
+
 }
